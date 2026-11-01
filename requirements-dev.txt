@@ -1,0 +1,6 @@
+-r requirements.txt
+pytest>=8
+pytest-cov>=5
+build
+twine
+pandas>=2

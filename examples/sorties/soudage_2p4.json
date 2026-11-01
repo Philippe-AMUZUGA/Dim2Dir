@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "soudage_2p4.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 16,
+      "factors": [
+        {
+          "name": "I A",
+          "levels": [
+            140,
+            180
+          ]
+        },
+        {
+          "name": "Avance mm/s",
+          "levels": [
+            4,
+            6
+          ]
+        },
+        {
+          "name": "Gaz L/min",
+          "levels": [
+            12,
+            16
+          ]
+        },
+        {
+          "name": "Tension V",
+          "levels": [
+            22,
+            26
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "I A",
+          "Gaz L/min"
+        ],
+        "y": [
+          "Avance mm/s",
+          "Tension V"
+        ]
+      },
+      "grid": {
+        "width": 4,
+        "height": 4,
+        "cells": 16
+      },
+      "occupied_cells": 16,
+      "empty_cells": 0,
+      "fill_rate": 1.0,
+      "collisions": [],
+      "image_engine": "matplotlib",
+      "files": [
+        "soudage_2p4_visu.xlsx",
+        "soudage_2p4_visu_Feuil1.pdf",
+        "soudage_2p4_visu_Feuil1.png"
+      ],
+      "warnings": [],
+      "status": "ok"
+    }
+  ]
+}

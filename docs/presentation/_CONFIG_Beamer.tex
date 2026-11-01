@@ -1,0 +1,1227 @@
+% ================================================================
+%  _CONFIG_BEAMER.tex  -  Config Beamer 16:9, sans conflits xcolor/hyperref
+% ================================================================
+
+% --------- Langue, encodage, typo --------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+%\renewcommand{\familydefault}{\sfdefault} % police sans serif
+\usepackage{microtype}
+\usepackage{ragged2e}
+
+
+% --- POLICES : identiques à l'ancien article --------------------
+% 1) Dire à beamer de ne pas toucher aux fontes
+\usefonttheme{professionalfonts}  % <-- indispensable
+
+% 2) Charger exactement les mêmes familles qu'avant
+\usepackage{tgpagella}   % SERIF (texte secondaire)
+\usepackage{tgadventor}  % SANS-SERIF (Adventor) = police principale
+\usepackage{inconsolata} % MONO (code)
+
+% 3) Forcer le sans-serif comme police par défaut (comme avant)
+\renewcommand{\familydefault}{\sfdefault}
+
+% 4) S'assurer que beamer utilise bien la sans pour les éléments-clés
+\setbeamerfont{title}{family=\sffamily}
+\setbeamerfont{subtitle}{family=\sffamily}
+\setbeamerfont{frametitle}{family=\sffamily}
+\setbeamerfont{author}{family=\sffamily}
+\setbeamerfont{date}{family=\sffamily}
+\setbeamerfont{normal text}{family=\sffamily}
+
+
+% --------- Maths & nombres --------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{numprint}
+\npdecimalsign{,} % virgule comme séparateur décimal
+
+% Maths compatibles Pagella (optionnel)
+\usepackage{newtxmath}  % 'newtxmath' ou 'mathdesign' avec 'urwpagella' si tu préfères
+
+
+%\usepackage{eufrak} % Inclut les chiffres fraktur
+\usepackage{pifont}
+
+% --------- Bibliographie
+\usepackage[numbers]{natbib}
+\setcitestyle{numbers}
+
+
+% --------- Graphiques / TikZ / Images ---------------------------
+\usepackage{graphicx}
+\graphicspath{{./FIG/}}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes,calc,fit,shadows}
+\usepackage{pgffor}
+
+\usepackage{subcaption}
+
+% --------- Colonnes & texte utilitaires -------------------------
+\usepackage{multicol}
+\usepackage{lipsum}
+\usepackage{relsize}
+\usepackage[none]{hyphenat}  % pas de césure
+\usepackage{booktabs}        % \toprule \midrule \bottomrule
+\usepackage{colortbl}        % pour \rowcolor dans les tableaux
+\usepackage{fontawesome}     % icônes FontAwesome
+\usepackage{textcomp}        % \texttt etc.
+
+% --------- Date (mois + année) ----------------------------------
+\usepackage{datetime}
+\newdateformat{monthyearformat}{\textsc{\monthname[\THEMONTH] \THEYEAR}}
+\newcommand{\mydate}[3]{%
+  \newdate{tempDate}{#1}{#2}{#3}%
+  \displaydate{tempDate}%
+}
+
+% --------- Beamer : nettoyage / symboles / pagination -----------
+
+\newcommand{\shortTitle}{}
+
+\setbeamertemplate{navigation symbols}{} % supprime la barre de nav
+\setbeamertemplate{footline}{%
+  \hspace*{0.25cm}\shortTitle\hfill%
+  \hspace*{-0.5cm}\usebeamerfont{page number in head/foot}%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \insertframenumber/\inserttotalframenumber\kern1em\vskip2pt%
+}
+\setbeamertemplate{headline}{}
+% \setbeamertemplate{frametitle}{}  % <= à commenter pour réafficher le titre/trait (“trait/cartouche” du titre)
+\setbeamertemplate{caption}[numbered]
+
+%%----------------------------------------------------------------------
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+%%----------------------------------------------------------------------
+
+% --------- Filets de sécurité couleurs Beamer -------------------
+% (Ne pas recharger xcolor : Beamer le fait déjà.)
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{subtitle}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{date}{fg=black}
+
+% --------- Palette couleurs perso (utilisable partout) ----------
+\definecolor{mplblue}{HTML}{1f77b4}
+\definecolor{mplorange}{HTML}{ff7f0e}
+\definecolor{Framableu}{RGB}{12,91,122}
+\definecolor{Framaviolet}{RGB}{106,86,135}
+\definecolor{Framaorange}{RGB}{235,114,57}
+\definecolor{Framarouge}{RGB}{204,45,24}
+\definecolor{Framajaune}{RGB}{196,168,27}
+\definecolor{Framagris}{RGB}{97,97,97}
+
+\definecolor{Framagreen}{RGB}{0, 150, 100}
+
+% --------- Puces listes -----------------------------------------
+\setbeamertemplate{itemize item}{\textbullet}
+\setbeamertemplate{itemize subitem}{$\circ$}
+\setbeamertemplate{itemize subsubitem}{$\triangleright$}
+
+% --------- Hyperliens (hyperref déjà chargé par Beamer) ---------
+\usepackage{xurl} 
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,
+  urlcolor=cyan
+}
+
+\usepackage{soul} % Pour stabilo jaune avec hl comme %\hl{LinearRegression}%
+
+% --------- Encadré simple réutilisable --------------------------
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\newcommand{\textinbox}[1]{%
+  \begin{center}
+    \begin{tcolorbox}[
+      colback=white,
+      colframe=black,
+      boxrule=1.5pt,
+      left=5pt,right=5pt,top=5pt,bottom=5pt
+    ]#1\end{tcolorbox}
+  \end{center}
+}
+
+% --------- Listings Python (UTF-8 robuste) ----------------------
+\usepackage{listings}
+% Palette douce pour le code
+\definecolor{codebg}{RGB}{248,248,248}
+\definecolor{coderule}{RGB}{210,210,210}
+\definecolor{pykw}{RGB}{0,92,197}
+\definecolor{pycm}{RGB}{76,153,0}
+\definecolor{pystr}{RGB}{196,26,22}
+\definecolor{pynum}{RGB}{128,0,128}
+
+% ======================================================================
+% Style de base commun (hérité par tous les styles)
+\lstdefinestyle{py_base}{
+  language=Python,
+  inputencoding=utf8,
+  upquote=true,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=true, % coupe de préférence aux espaces
+%  breakatwhitespace=false, % coupe de préférence aux espaces
+  columns=fullflexible,
+  % --- Gestion numero de ligne et taille
+  linewidth=0.99\linewidth,
+%  numbersep=0pt,
+  framexleftmargin=0.2em,
+  xleftmargin=-0.4em,    
+  % --- Mapping Unicode -> LaTeX (accents, ligatures, exposants)
+  literate=
+    {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1
+    {à}{{\`a}}1 {â}{{\^a}}1 {ä}{{\"a}}1
+    {î}{{\^i}}1 {ï}{{\"i}}1
+    {ô}{{\^o}}1 {ö}{{\"o}}1
+    {ù}{{\`u}}1 {û}{{\^u}}1 {ü}{{\"u}}1
+    {ç}{{\c c}}1
+    {œ}{{\oe}}1 {æ}{{\ae}}1
+    {É}{{\'E}}1 {È}{{\`E}}1 {Ê}{{\^E}}1 {Ë}{{\"E}}1
+    {À}{{\`A}}1 {Â}{{\^A}}1 {Ä}{{\"A}}1
+    {Î}{{\^I}}1 {Ï}{{\"I}}1
+    {Ô}{{\^O}}1 {Ö}{{\"O}}1
+    {Ù}{{\`U}}1 {Û}{{\^U}}1 {Ü}{{\"U}}1
+    {Ç}{{\c C}}1
+    {Œ}{{\OE}}1 {Æ}{{\AE}}1
+    {¹}{{\textsuperscript{1}}}1
+    {²}{{\textsuperscript{2}}}1
+    {³}{{\textsuperscript{3}}}1
+    {±}{{$\pm$}}1
+    {×}{{$\times$}}1
+    {°}{{$^{\circ}$}}1
+    {’}{{'}}1 {‘}{{'}}1
+    {«}{{\guillemotleft}}1 {»}{{\guillemotright}}1
+    {–}{{--}}1 {—}{{---}}1
+    {·}{{$\cdot$}}1 {•}{{$\bullet$}}1
+    {©}{{\textcopyright}}1
+    {®}{{\textregistered}}1
+    {™}{{\texttrademark}}1
+    {±}{{$\pm$}}1 {×}{{$\times$}}1 {÷}{{$\div$}}1
+    {≈}{{$\approx$}}1 {≤}{{$\leq$}}1 {≥}{{$\geq$}}1 {≠}{{$\neq$}}1
+    {µ}{{$\mu$}}1 {∞}{{$\infty$}}1
+    {→}{{$\rightarrow$}}1 {←}{{$\leftarrow$}}1
+    {…}{{$\ldots$}}1 {∂}{{$\dela$}}1
+    {α}{{$\alpha$}}1 {β}{{$\beta$}}1 {γ}{{$\gamma$}}1
+    {δ}{{$\delta$}}1 {Δ}{{$\Delta$}}1
+    {σ}{{$\sigma$}}1 {ε}{{$\varepsilon$}}1 {λ}{{$\lambda$}}1 {ν}{{$\nu$}}1
+}
+
+% Certains caractères Unicode utiles hors "literate"
+\DeclareUnicodeCharacter{00A0}{ }                 % espace insécable -> espace
+\DeclareUnicodeCharacter{00A9}{\textcopyright}    % ©
+
+% ======================================================================
+% py_style1 : proche de ton style initial
+\lstdefinestyle{py_style1}{
+  style=py_base,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{pykw},
+  commentstyle=\itshape\color{pycm},
+  stringstyle=\color{pystr},
+  numberstyle=\scriptsize\color{black!60},
+  numbers=left,
+%  numbersep=8pt,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{coderule},
+  backgroundcolor=\color{codebg},
+}
+
+% ======================================================================
+% py_style2 : compacte, marges adaptées
+\lstdefinestyle{py_style2}{
+  style=py_base,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\bfseries\color{pykw},
+  commentstyle=\itshape\color{pycm},
+  stringstyle=\color{pystr},
+  numberstyle=\scriptsize\color{black!60},
+  numbers=left,
+  frame=single,
+  framerule=0.8pt,
+  rulecolor=\color{coderule},
+  backgroundcolor=\color{codebg},
+  linewidth=0.95\linewidth,
+}
+
+% ======================================================================
+% py_style3 : sans numéros, pas de fond, cadre noir, largeur 0.98
+\lstdefinestyle{py_style3}{
+  style=py_base,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\bfseries\color{pykw},
+  commentstyle=\itshape\color{pycm},
+  stringstyle=\color{pystr},
+  numbers=none,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black},
+  % pas de backgroundcolor -> fond transparent
+}
+
+% ======================================================================
+% py_style4 : couleurs explicites + fond gris léger
+\lstdefinestyle{py_style4}{
+  style=py_base,  
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!80!black},
+  showtabs=false,
+  tabsize=4,
+  numbers=left,
+  numberstyle=\footnotesize\color{gray},
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black},
+  backgroundcolor=\color{black!5},
+}
+
+% ======================================================================
+% py_style5 : sobre, coloré, espaces préservés
+\lstdefinestyle{py_style5}{
+  style=py_base,
+  basicstyle=\ttfamily\scriptsize,
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red},
+  keepspaces=true,             % préserve les espaces
+  frame=single,
+  framerule=0.5pt,
+  rulecolor=\color{black},
+%  framexleftmargin=0.2em,
+  xleftmargin=-2.0em,   
+  % (optionnel) Indiquer visuellement la coupure :
+  postbreak=\mbox{$\rightarrow$\space} % flèche simple, robuste
+}
+
+
+% ================================================================
+% GESTION DES BACKGROUNDS - SOLUTION ROBUSTE
+% ================================================================
+
+%% 1) Fond global par défaut (toutes les frames)
+%\setbeamertemplate{background canvas}{%
+%%  \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_2.pdf}%
+%  \includegraphics[width=1.02\paperwidth,keepaspectratio]{./_FIG_CONFIG/Background_2.pdf}%
+%}
+
+%++++++++++++++++++++++++++++++++++++++++++++
+
+%
+% 2) Environnement: frame avec fond CETIM :
+%--------------------
+\newenvironment{FrameCetim}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+%    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_1.pdf}%
+    \includegraphics[width=1.02\paperwidth,keepaspectratio]{./_FIG_CONFIG/Background_1.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+%--------------------
+\newenvironment{FrameCetim2}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+%    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_2.pdf}%
+    \includegraphics[width=1.02\paperwidth,keepaspectratio]{./_FIG_CONFIG/Background_2.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+
+%--------------------
+\newenvironment{FrameCetim3}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_3.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+
+%--------------------
+\newenvironment{FrameCetim4}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_4.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+%--------------------
+\newenvironment{FrameCetim5}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Background_5.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+
+
+%++++++++++++++++++++++++++++++++++++++++++++
+% 3) Environnement générique: frame avec fond PDF custom
+%    Usage: \begin{FrameCustom}{./path/fond.pdf}[plain] ... \end{FrameCustom}
+\newenvironment{FrameCustom}[2][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{#2}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+% ================================================================
+% --- Environnement avec fond spécifique (Layer_1) ---
+\newenvironment{myFrame1}[1][]%
+{%
+  \begingroup
+  \setbeamertemplate{background canvas}{%
+    \includegraphics[width=\paperwidth,height=\paperheight]{./_FIG_CONFIG/Layer_1.pdf}%
+  }%
+  \begin{frame}[#1]%
+}%
+{%
+  \end{frame}%
+  \endgroup
+}
+
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[export]{adjustbox}
+\usepackage{relsize}
+
+% Macro simple pour citer une source en note de bas de page
+\newcommand{\source}[1]{\footnote{\textit{Source : }#1}}
+
+
+\setbeamertemplate{frametitle continuation}{}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+% ================================================================
+% Ajustements pour les encadrements d’images
+% ================================================================
+\fboxsep=2pt   % marge interne des cadres
+\fboxrule=0.5pt % épaisseur du cadre
+%\usepackage{enumitem}
+
+
+
+% ================================================================
+%  Gestion des diapositives de transition de chapitre avec numéro incrémental
+% ================================================================
+
+% ================================================================
+% Compteur de chapitres et numérotation auto
+\newcounter{chapCompteur}
+\setcounter{chapCompteur}{1}
+
+% Commande : affiche et incrémente le numéro (pour ChapNumber)
+\newcommand{\myChapNum}{%
+    \scalebox{6.0}{\color{black}\textbf{\thechapCompteur}}%
+    \stepcounter{chapCompteur}%
+}
+
+% Variante : affiche le numéro sans incrémenter
+\newcommand{\myChapNumFixe}{%
+    \scalebox{3.0}{\color{blue!25!black}\textbf{\thechapCompteur}}%
+}
+
+%++++++++++++++++++++++++++++++++++++++++++++
+% Déclaration du compteur, initialisé à 0
+\newcounter{partNum}
+%\setcounter{partNum}{-1}
+\setcounter{partNum}{0}
+%\setcounter{partNum}{1}
+% Macro pour afficher et incrémenter
+\newcommand{\partNum}{%
+  \stepcounter{partNum}%
+  \thepartNum%
+}
+
+
+
+% ================================================================
+% Commande simplifiée : \ChapNumber{<numéro>}{<titre>}{<sous-titre>}
+% Mot affiché devant le numéro : « Chapitre » par défaut ; \renewcommand{\motchapitre}{Partie} dans le maître pour une séance.
+\newcommand{\motchapitre}{Chapitre}
+
+\newcommand{\ChapNumber}[3]{%
+  \begin{myFrame1}[plain]
+    % conteneur global
+    \hspace*{-1cm}\begin{minipage}[t]{1.01\textwidth}
+
+      % Colonne gauche (numéro)
+      \begin{minipage}[t]{0.52\textwidth}
+        \vspace*{1cm}
+        \hspace*{2cm}
+        \textsc{\Huge \motchapitre}#1
+      \end{minipage}\hfill
+      % Colonne droite (titre + sous-titre)
+      \begin{minipage}[t]{0.47\textwidth}
+        \vspace*{3cm}
+        {\raggedright \color{white}
+          {#2}\\[0.5ex]
+          {#3}
+        }
+      \end{minipage}%
+
+    \end{minipage}
+  \end{myFrame1}
+}
+
+
+\newcommand{\ChapNumberCetim}[3]{%
+  \begin{FrameCetim3}[plain]
+    % conteneur global
+    \hspace*{-1cm}\begin{minipage}[t]{1.01\textwidth}
+
+      % Colonne gauche (numéro)
+      \begin{minipage}[t]{0.3\textwidth}
+        \vspace*{1cm}
+        \hspace*{2cm}
+        {#1}
+      \end{minipage}\hfill
+      % Colonne droite (titre + sous-titre)
+      \begin{minipage}[t]{0.6\textwidth}
+        \vspace*{3cm}
+        {\raggedright \color{white}
+          {#2}\\[0.5ex]
+          {#3}
+        }
+      \end{minipage}%
+
+    \end{minipage}
+  \end{FrameCetim3}
+}
+
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+% Division VERTICALE (fond uni, fraction 0-1 depuis le bas)
+\newcommand{\specialpageV}[2]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \path (current page.north west) -- (current page.south west)
+            coordinate[pos=#1] (divpoint);
+        \fill[#2] (current page.south west) rectangle (current page.north east |- divpoint);
+    \end{tikzpicture}%
+}
+
+% Division HORIZONTALE (fond uni, fraction 0-1 depuis la gauche)
+\newcommand{\specialpageH}[2]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \path (current page.west) -- (current page.east)
+            coordinate[pos=#1] (divpoint);
+        \fill[#2] (current page.north west) rectangle (current page.south east -| divpoint);
+    \end{tikzpicture}%
+}
+
+% Version opposée VERTICALE (colore le haut)
+\newcommand{\specialpageVopp}[2]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \path (current page.south west) -- (current page.north west)
+            coordinate[pos=#1] (divpoint);
+        \fill[#2] (divpoint) rectangle (current page.north east);
+    \end{tikzpicture}%
+}
+
+% Version opposée HORIZONTALE (colore la droite)
+\newcommand{\specialpageHopp}[2]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \path (current page.east) -- (current page.west)
+            coordinate[pos=#1] (divpoint);
+        \fill[#2] (divpoint |- current page.north east) rectangle (current page.south east);
+    \end{tikzpicture}%
+}
+
+% ================== Image + voile : variantes ==================
+
+% Image clipée horizontalement (depuis la gauche) + voile
+\newcommand{\specialimageH}[4]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (clipEnd) at ($(current page.south west) + (#4*\paperwidth, 0)$);
+        \begin{scope}
+            \clip (current page.south west) rectangle (clipEnd |- current page.north east);
+            \node[anchor=south west,inner sep=0pt] at (current page.south west) {%
+                \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}%
+            };
+        \end{scope}
+        \begin{scope}
+            \clip (current page.south west) rectangle (clipEnd |- current page.north east);
+            \fill[#2,opacity=#3] (current page.south west) rectangle (current page.north east);
+        \end{scope}
+    \end{tikzpicture}%
+}
+
+% Image clipée VERTICALement (depuis le bas) + voile  <-- utilisée par le code source
+\newcommand{\specialimageV}[4]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \begin{scope}
+            \clip (current page.south west) rectangle
+                  ([yshift=#4\paperheight]current page.south west -| current page.north east);
+            \node[anchor=south west,inner sep=0pt] at (current page.south west) {%
+                \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio=false]{#1}%
+            };
+        \end{scope}
+        \fill[#2,opacity=#3] (current page.south west) rectangle
+             ([yshift=#4\paperheight]current page.south west -| current page.north east);
+    \end{tikzpicture}%
+}
+
+% Image clipée depuis la droite + voile
+\newcommand{\specialimageHopp}[4]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (clipStart) at ($(current page.south east) - (#4*\paperwidth, 0)$);
+        \begin{scope}
+            \clip (clipStart) rectangle (current page.north east);
+            \node[anchor=south east,inner sep=0pt] at (current page.south east) {%
+                \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}%
+            };
+        \end{scope}
+        \begin{scope}
+            \clip (clipStart) rectangle (current page.north east);
+            \fill[#2,opacity=#3] (current page.south west) rectangle (current page.north east);
+        \end{scope}
+    \end{tikzpicture}%
+}
+
+% Image clipée depuis le haut + voile
+\newcommand{\specialimageVopp}[4]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        \coordinate (clipStart) at ($(current page.north west) + (0, -#4*\paperheight)$);
+        \begin{scope}
+            \clip (current page.north west) rectangle (clipStart -| current page.north east);
+            \node[anchor=north west,inner sep=0pt] at (current page.north west) {%
+                \includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}%
+            };
+        \end{scope}
+        \begin{scope}
+            \clip (current page.north west) rectangle (clipStart -| current page.north east);
+            \fill[#2,opacity=#3] (current page.south west) rectangle (current page.north east);
+        \end{scope}
+    \end{tikzpicture}%
+}
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+
+% --- style pour texte/prompt ---
+\definecolor{promptbg}{HTML}{F7F7F7}
+\definecolor{promptborder}{HTML}{D0D7DE}
+\lstdefinestyle{promptstyle_base}{
+  language=,
+  basicstyle=\ttfamily\small,
+  upquote=true, showstringspaces=false, keepspaces=true,
+  columns=fullflexible, breaklines=true, breakatwhitespace=false,
+  backgroundcolor=\color{promptbg},
+  frame=single, rulecolor=\color{promptborder},
+  framesep=6pt, framexleftmargin=6pt,
+  linewidth=0.98\linewidth, numbers=none,
+  inputencoding=utf8,
+  literate=
+    {é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {ë}{{\"e}}1
+    {à}{{\`a}}1 {â}{{\^a}}1 {ä}{{\"a}}1
+    {î}{{\^i}}1 {ï}{{\"i}}1
+    {ô}{{\^o}}1 {ö}{{\"o}}1
+    {ù}{{\`u}}1 {û}{{\^u}}1 {ü}{{\"u}}1
+    {ç}{{\c c}}1
+    {œ}{{\oe}}1 {æ}{{\ae}}1
+    {É}{{\'E}}1 {È}{{\`E}}1 {Ê}{{\^E}}1 {Ë}{{\"E}}1
+    {À}{{\`A}}1 {Â}{{\^A}}1 {Ä}{{\"A}}1
+    {Î}{{\^I}}1 {Ï}{{\"I}}1
+    {Ô}{{\^O}}1 {Ö}{{\"O}}1
+    {Ù}{{\`U}}1 {Û}{{\^U}}1 {Ü}{{\"U}}1
+    {Ç}{{\c C}}1
+    {Œ}{{\OE}}1 {Æ}{{\AE}}1
+}
+
+% ======================================================================
+\lstdefinestyle{promptstyle0}{
+  style=promptstyle_base,
+  keepspaces=true,             % préserve les espaces
+  frame=single,
+  framerule=0.5pt,
+%  framexleftmargin=0.2em,
+  xleftmargin=-0.75em,   
+}
+
+
+\lstdefinestyle{promptstyle1}{
+  style=promptstyle_base,
+  keepspaces=true,             % préserve les espaces
+  frame=single,
+  framerule=0.5pt,
+%  framexleftmargin=0.2em,
+  xleftmargin=-0.75em,  
+  backgroundcolor=\color{black!10!white},
+  rulecolor=\color{black!90!white}, 
+}
+
+\lstdefinestyle{promptstyle2}{
+  style=promptstyle_base,
+  keepspaces=true,             % préserve les espaces
+  frame=single,
+  framerule=0.5pt,
+%  framexleftmargin=0.2em,
+  xleftmargin=-0.75em,   
+  backgroundcolor=\color{black!10!white},
+  rulecolor=\color{black!90!white},
+}
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\definecolor{codebg}{RGB}{248,248,248}
+\definecolor{inlinebg}{RGB}{246,248,250} % proche GitHub/Markdown
+
+\newcommand{\inlinecode}[1]{%
+  \colorbox{codebg}{\ttfamily\small\detokenize{#1}}% inlinebg ou codebg
+}
+
+
+%% --- Inline code façon Markdown (mono + fond gris, pas de coloration) ---
+%\lstdefinestyle{inlinecode}{
+%  basicstyle=\ttfamily\small,
+%  backgroundcolor=\color{codebg}, % inlinebg ou codebg
+%  columns=fullflexible,
+%  keepspaces=true,
+%  showstringspaces=false,
+%  breaklines=false,
+%  frame=none,
+%  numbers=none
+%}
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+% ---- Couleurs palette Frama ----
+\definecolor{Framableu}{RGB}{12,91,122}
+\definecolor{Framableulight}{RGB}{18,144,176}
+\definecolor{Framavert}{RGB}{142,156,72}
+\definecolor{Framavertlight}{RGB}{227,235,199}
+\definecolor{Framarouge}{RGB}{204,45,24}
+\definecolor{Framarougelight}{RGB}{249,189,187}
+\definecolor{Framaviolet}{RGB}{106,86,135}
+\definecolor{Framavioletlight}{RGB}{211,197,232}
+\definecolor{Framaorange}{RGB}{235,114,57}
+\definecolor{Framaorangelight}{RGB}{235,209,197}
+\definecolor{Framajaune}{RGB}{196,168,27}
+\definecolor{Framajaunelight}{RGB}{255,235,181}
+\definecolor{Framamarron}{RGB}{161,136,127}
+\definecolor{Framamarronlight}{RGB}{215,204,200}
+\definecolor{Framagris}{RGB}{97,97,97}
+\definecolor{Framagrislight}{RGB}{245,245,245}
+
+% ---- Boîtes colorées simples ----
+\newcommand{\boiteviolette}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framaviolet}{Framavioletlight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+\newcommand{\boiteorange}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framaorange}{Framaorangelight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+\newcommand{\boitemarron}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framamarron}{Framamarronlight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+\newcommand{\boitegrise}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framagris}{Framagrislight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+\newcommand{\boitejaune}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framajaune}{Framajaunelight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+\newcommand{\boitebleue}[3]{%
+\begin{center}
+\hspace*{#2}\fcolorbox{Framableu}{Framableulight}{%
+\begin{minipage}{#1\textwidth}#3\end{minipage}}
+\end{center}
+}
+
+% ---- tcolorbox + environnements block (sans couleurs non standards) ----
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usetikzlibrary{shadings,shadows}
+
+% Utilisation de couleurs standard beamer-safe
+\newenvironment{greenblock}[1]{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=green!20,colframe=green!60!black,
+    colbacklower=green!10!white,
+    colbacktitle=green!50!black,
+    title=#1]}%
+    {\endtcolorbox}
+
+\newenvironment{redblock}[1]{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=red!20,colframe=red!60!black,
+    colbacklower=red!10!white,
+    colbacktitle=red!50!black,
+    title=#1]}%
+    {\endtcolorbox}
+
+\newenvironment{blueblock}[1]{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=blue!15,colframe=blue!60!black,
+    colbacklower=blue!10!white,
+    colbacktitle=blue!50!black,
+    title=#1]}%
+    {\endtcolorbox}
+    
+\newenvironment{grayblock}[1]{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=gray!15,colframe=black,
+    colbacklower=gray!5!white,
+    colbacktitle=gray!60!black,
+    title=#1]}%
+    {\endtcolorbox}
+
+\newenvironment{orangeblock}[1]{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=orange!20,colframe=orange!70!black,
+    colbacklower=orange!10!white,
+    colbacktitle=orange!60!black,
+    title=#1]}%
+    {\endtcolorbox}
+
+% ---- Variantes pastel ----
+\newenvironment{pastelwhiteblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=gray!5,colframe=black,
+    colbacklower=gray!15!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelblueblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=blue!5!white,colframe=black,
+    colbacklower=blue!15!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelgreenblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=green!5!white,colframe=black,
+    colbacklower=green!15!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelyellowblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=yellow!5!white,colframe=black,
+    colbacklower=yellow!15!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelredblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=red!5!white,colframe=black,
+    colbacklower=red!15!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelorangeblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=orange!5!white,colframe=black,
+    colbacklower=orange!15!white]}%
+    {\endtcolorbox}
+
+% ---- Palette sobre tiree de la colormap vlag (seaborn), revision 2026-10-20 ----
+% Une presentation retient UNE teinte d'accent (vlagblue ou vlagred) et des neutres (gris) ; pas plus de 3 teintes par frame.
+\definecolor{vlagblue}{HTML}{5380BC}
+\definecolor{vlagred}{HTML}{B85857}
+\definecolor{vlagsand}{HTML}{FAF5F4}
+\newenvironment{pastelgrayblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=gray!8!white,colframe=black!70,
+    colbacklower=gray!18!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelvlagblueblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=vlagblue!9!white,colframe=vlagblue!70!black,
+    colbacklower=vlagblue!18!white]}%
+    {\endtcolorbox}
+
+\newenvironment{pastelvlagredblock}{%
+    \tcolorbox[beamer,
+    noparskip,breakable,
+    colback=vlagred!9!white,colframe=vlagred!70!black,
+    colbacklower=vlagred!18!white]}%
+    {\endtcolorbox}
+
+% ---- Texte libre (sans panneau) : commenter une figure ou un tableau, nuancer, signaler une information importante.
+% Parcimonie : voir branches/texte-libre-et-couleurs.md ; au plus 1 ou 2 zones par frame, sur une frame sur trois environ.
+\newcommand{\notelibre}[2][\small]{\par\vspace{0.3em}{\noindent#1\ignorespaces #2\par}}
+\newenvironment{textelibre}[1][\small]{\par\vspace{0.3em}\noindent#1}{\par}
+
+% ---- Message cle de la frame : panneau pastel en bas de frame (ou de colonne), texte \small.
+% \messagecle{Texte}  ou  \messagecle[green]{Texte}  ; couleurs : white, blue, green, yellow, red, orange, gray, vlagblue, vlagred.
+% Une seule couleur par role dans toute la presentation (par exemple toujours blue pour le message principal).
+\newcommand{\messagecle}[2][blue]{\par\vspace{0.4em}\begin{pastel#1block}\noindent\raggedright\small #2\end{pastel#1block}\par}
+
+
+% ============================================
+% Environnement mybox - version simple et robuste
+% ============================================
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+\newenvironment{mybox}[1]{%
+  \begin{tcolorbox}[%
+    colback=white,        % fond blanc
+    colframe=black,       % bordure noire
+    boxrule=0.8pt,        % épaisseur bordure
+    sharp corners,        % coins droits
+    enhanced,             % permet les effets avancés
+    breakable,            % contenu multi-page
+    title={#1},           % titre en haut
+    fonttitle=\bfseries,  % style du titre
+    drop shadow,          % ombre portée simple
+    top=4pt, bottom=4pt, left=6pt, right=6pt
+  ]%
+}{%
+  \end{tcolorbox}%
+}
+
+% --- Nouvelles versions paramétrables (nécessitent xparse) ---------------
+\NewDocumentEnvironment{mybox3}{ O{} O{} O{} m }{%
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    sharp corners,
+    colback={\if\relax\detokenize{#1}\relax white\else#1\fi},
+    colframe={\if\relax\detokenize{#2}\relax black\else#2\fi},
+    boxrule=0.8pt,
+    drop shadow,
+    top=4pt, bottom=4pt, left=6pt, right=6pt,
+    title={#4}, % Note: maintenant #4 car nous avons 3 args optionnels
+%    fonttitle=\bfseries\color{white},
+    fonttitle=\normalfont\color{white},
+    attach boxed title to top left={
+      xshift=6pt,
+      yshift=-2mm,
+      yshifttext=-1mm
+    },
+    boxed title style={
+      enhanced,
+      sharp corners,
+      colframe={\if\relax\detokenize{#2}\relax black\else#2\fi},
+      colback={\if\relax\detokenize{#3}\relax\if\relax\detokenize{#2}\relax black\else#2\fi\else#3\fi}, % #3 ou #2 si #3 vide
+      boxrule=0.8pt,
+      left=4pt,
+      right=4pt
+    }
+  ]%
+}{%
+  \end{tcolorbox}%
+}
+
+
+
+\NewDocumentEnvironment{mybox2}{ O{} O{} }{%
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    sharp corners,
+    colback={\IfNoValueTF{#1}{white}{#1}},   % fond (défaut blanc)
+    colframe={\IfNoValueTF{#2}{black}{#2}},  % bordure (défaut noire)
+    boxrule=0.6pt,
+    top=4pt, bottom=4pt, left=6pt, right=6pt,
+    fonttitle=\bfseries
+  ]%
+}{%
+  \end{tcolorbox}%
+}
+
+
+% mybox4 : [colback][colframe][coltitleback]{Titre}
+\NewDocumentEnvironment{mybox4}{ O{} O{} O{} m }{%
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback={\if\relax\detokenize{#1}\relax white\else#1\fi},% fond
+    colframe={\if\relax\detokenize{#2}\relax black\else#2\fi},% cadre
+    arc=1mm,              % coins arrondis
+    boxrule=0.8pt,
+    top=4pt, bottom=4pt, left=6pt, right=6pt,
+    title={#4},
+    coltitle=white,       % couleur du texte du titre
+    fonttitle=\normalfont, %\bfseries,
+    attach boxed title to top left={xshift=6pt,yshift=-2mm,yshifttext=-1mm},
+    boxed title style={
+      enhanced,
+      colframe={\if\relax\detokenize{#2}\relax black\else#2\fi},% cadre du titre
+      colback={\if\relax\detokenize{#3}\relax
+                 \if\relax\detokenize{#2}\relax black\else#2\fi
+               \else#3\fi},                                    % fond du titre
+      arc=2mm,
+      boxrule=0.8pt,
+      left=6pt,right=6pt
+    }
+  ]%
+}{%
+  \end{tcolorbox}%
+}
+
+% ---- Blocks ----
+
+\newtcolorbox{whiteblock}[1]{%
+  enhanced,
+  breakable,
+  colback=white,            % fond blanc
+  colframe=black!70,        % bordure gris foncé
+  coltitle=black,           % titre en noir
+  fonttitle=\bfseries,      % titre en gras
+  title={#1},
+  boxrule=0.8pt,
+  arc=3pt,
+  left=6pt,right=6pt,top=6pt,bottom=6pt,
+  before skip=4pt, after skip=6pt
+}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+
+% Environnement checklist paramétrable
+% Syntaxe : \begin{checklist}[<taille>][<marge>][<espacement>][<symbole_item>][<symbole_subitem>]
+\NewDocumentEnvironment{checklist}{O{\scriptsize} O{1.5em} O{0.5ex} O{$\square$} O{$\square$}}{%
+  \setbeamertemplate{itemize item}{#4}%      % #4 : Symbole pour les items principaux
+  \setbeamertemplate{itemize subitem}{#5}%   % #5 : Symbole pour les sous-items
+  \setlength{\leftmargini}{#2}%              % #2 : Marge gauche de la liste
+  \setlength{\itemindent}{-0.5em}%           % Indentation négative pour alignement
+  \setlength{\itemsep}{#3}%                  % #3 : Espace vertical entre les items
+  \setlength{\parskip}{0pt}%                 % Pas d'espace supplémentaire entre paragraphes
+  \begin{itemize}{#1}%                       % #1 : Taille de police des items
+}{%
+  \end{itemize}%
+}
+% Variables pour les symboles (optionnel - pour une cohérence globale)
+\newcommand{\defaultcheckitem}{$\square$}
+\newcommand{\defaultchecksubitem}{$\square$}
+\newcommand{\checkeditem}{$\checkmark$}
+\newcommand{\bulletitem}{$\bullet$}
+
+%++++++++++++++++++++++++++++++++++++++++++++
+
+% Environnement checklist_num paramétrable avec enumerate
+% Définition corrigée de checklist_num
+\NewDocumentEnvironment{checklist_num}{O{\scriptsize} O{1.5em} O{0.5ex} O{a} O{normal}}{%
+  % #1 : taille police, #2 : marge, #3 : espacement, #4 : style enum, #5 : bold/normal
+  \setlength{\leftmargini}{#2}%
+  \setlength{\itemindent}{-0.5em}%
+  \setlength{\itemsep}{#3}%
+  \setlength{\parskip}{0pt}%
+  
+  % Styles disponibles dans Beamer :
+  % a = lettres minuscules, A = lettres majuscules
+  % i = chiffres romains minuscules, I = chiffres romains majuscules
+  % 1 = chiffres arabes (défaut)
+  
+  \begin{enumerate}[#4]%
+  \ifthenelse{\equal{#5}{bold}}{%
+    \setbeamertemplate{enumerate items}{\textbf{\insertenumlabel.}}%
+  }{%
+    \setbeamertemplate{enumerate items}{\insertenumlabel.}%
+  }%
+}{%
+  \end{enumerate}%
+}
+
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+\newcommand{\framevide}[1][]{%
+  %++++++++++++++++++++++++++++++++++++++++++++
+  \begin{frame}[plain]{#1}
+  % Slide vide pour usage de tableau blanc
+%	\framevide              % sans titre
+%	\framevide[Titre]       % avec titre  
+  \end{frame}
+  %++++++++++++++++++++++++++++++++++++++++++++
+}
+
+%\usepackage{xparse}
+
+\NewDocumentEnvironment{framecustomCalque}{ O{white} O{./_FIG_CONFIG/ResPageBlack_8.jpg} O{plain} +b }
+{%
+  {%
+    \usebackgroundtemplate{%
+      \includegraphics[width=\paperwidth,height=\paperheight]{#2}%
+    }%
+    \setbeamercolor{normal text}{fg=#1}%
+    \setbeamercolor{structure}{fg=#1}%
+    \setbeamercolor{item}{fg=#1}%
+    \setbeamercolor{itemize item}{fg=#1}%
+    \setbeamercolor{itemize subitem}{fg=#1}%
+    \setbeamercolor{itemize subsubitem}{fg=#1}%
+    \setbeamercolor{enumerate item}{fg=#1}%
+    \setbeamercolor{itemize/enumerate body}{fg=#1}%
+    \setbeamercolor{itemize/enumerate subbody}{fg=#1}%
+    \setbeamercolor{itemize/enumerate subsubbody}{fg=#1}%
+
+    \begin{frame}[#3]
+      \color{#1}%
+      #4
+    \end{frame}
+  }%
+}
+{}
+  
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+
+% ================================================================
+% MD-LIKE : équivalents visuels Markdown pour Beamer
+% (aucun package supplémentaire : tcolorbox + listings déjà chargés)
+% ================================================================
+
+% --- 1) Citation type Markdown :
+% Usage :
+%   \begin{mdblockquote}
+%   Blabla
+%   \end{mdblockquote}
+\newtcolorbox{mdblockquote}{%
+  enhanced,
+  breakable,
+  colback=black!2,
+  colframe=black!20,
+  boxrule=0pt,
+  frame hidden,
+  borderline west={2.2pt}{0pt}{Framagris},
+  left=8pt,
+  right=6pt,
+  top=4pt,
+  bottom=4pt,
+  sharp corners
+}
+
+% --- 2) Code inline type Markdown : `Blabla`
+% Usage : \mdcode{Blabla}
+\newtcbox{\mdcode}{%
+  on line,
+  box align=base,
+  nobeforeafter,
+  colback=codebg,
+  colframe=coderule,
+  boxrule=0.35pt,
+  arc=2pt,
+  left=3pt,
+  right=3pt,
+  top=1pt,
+  bottom=1pt,
+  fontupper=\ttfamily\footnotesize
+}
+
+% --- 3) Bloc de code type Markdown : ``` ... ```
+% Usage :
+%   \begin{mdcodeblock}
+%   Blabla
+%   \end{mdcodeblock}
+% Optionnel : \begin{mdcodeblock}[language=Python]
+\lstdefinestyle{md_block}{
+  inputencoding=utf8,
+  upquote=true,
+  showstringspaces=false,
+  breaklines=true,
+  columns=fullflexible,
+  basicstyle=\ttfamily\scriptsize,
+  numbers=none,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{coderule},
+  backgroundcolor=\color{codebg},
+  xleftmargin=0pt,
+  framexleftmargin=0.4em
+}
+
+\lstnewenvironment{mdcodeblock}[1][]{%
+  \lstset{style=md_block,#1}%
+}{}
+
+    
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+
+
+    
+    

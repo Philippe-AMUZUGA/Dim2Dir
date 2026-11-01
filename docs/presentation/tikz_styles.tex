@@ -1,0 +1,23 @@
+% ================================================================
+%  tikz_styles.tex : styles TikZ communs aux gabarits Pro et Perso
+%  Usage : \input{tikz_styles} après \input{_CONFIG_Beamer}
+%  La police est celle du document (Adventor) : pas de \fontspec ici.
+%  Palette : couleurs Frama de la config (Framableu, Framaorange, Framagreen,
+%  Framajaune, Framarouge). Au plus trois couleurs par schéma.
+% ================================================================
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds,shapes.misc,decorations.pathreplacing}
+
+\tikzset{
+  schema/.style={font=\small\sffamily, >=Stealth, every node/.style={font=\small\sffamily}},
+  etape/.style={draw=Framableu, fill=Framableu!8!white, rounded corners=2pt, line width=0.8pt,
+                align=center, inner sep=4pt, text width=2.6cm, minimum height=0.9cm},
+  entree/.style={etape, draw=Framableu, fill=Framableu!8!white},
+  tache/.style={etape, draw=Framaorange, fill=Framaorange!8!white},
+  sortie/.style={etape, draw=Framagreen, fill=Framagreen!8!white},
+  alerte/.style={etape, draw=Framarouge, fill=Framarouge!8!white},
+  note/.style={font=\footnotesize\sffamily, align=left, text width=3cm, inner sep=2pt, text=black!70},
+  flux/.style={-{Stealth[length=2.2mm]}, line width=0.9pt, draw=black!70},
+  lien/.style={line width=0.6pt, draw=black!40, dashed},
+  titre/.style={font=\small\bfseries\sffamily, align=center},
+}

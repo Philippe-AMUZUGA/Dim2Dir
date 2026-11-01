@@ -1,0 +1,7 @@
+include README.md LICENSE CHANGELOG.md CONTRIBUTING.md SECURITY.md Dim2Dir.py
+include pytest.ini .coveragerc requirements*.txt Lancer_Dim2Dir.bat
+recursive-include tests *.py
+recursive-include examples *.py *.md *.xlsx
+recursive-include tools *.py
+recursive-include src/dim2dir *.py py.typed
+global-exclude __pycache__ *.py[cod]

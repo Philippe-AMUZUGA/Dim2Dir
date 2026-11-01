@@ -1,0 +1,9 @@
+﻿{
+    "gabarit":  "Perso",
+    "moteur":  "pdfLaTeX (XeLaTeX et LuaLaTeX acceptés)",
+    "config_source":  "gabarits/Perso/_CONFIG_Beamer.tex",
+    "sha256":  "e8d3133faf45c511a3cc0ce4bd6dd56d46a0d2fc764614d6d84fb800d55c66b1",
+    "date":  "2026-11-01",
+    "squelette":  true,
+    "maitre":  "Dim2Dir_Presentation_V2.tex"
+}

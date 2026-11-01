@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "materiaux_textuels.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 27,
+      "factors": [
+        {
+          "name": "Matériau",
+          "levels": [
+            "acier S355",
+            "aluminium 6061",
+            "titane TA6V"
+          ]
+        },
+        {
+          "name": "Traitement thermique",
+          "levels": [
+            "aucun",
+            "trempe",
+            "revenu"
+          ]
+        },
+        {
+          "name": "Épaisseur mm",
+          "levels": [
+            2,
+            4,
+            6
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "Matériau",
+          "Épaisseur mm"
+        ],
+        "y": [
+          "Traitement thermique"
+        ]
+      },
+      "grid": {
+        "width": 9,
+        "height": 3,
+        "cells": 27
+      },
+      "occupied_cells": 27,
+      "empty_cells": 0,
+      "fill_rate": 1.0,
+      "collisions": [],
+      "image_engine": "matplotlib",
+      "files": [
+        "materiaux_textuels_visu.xlsx",
+        "materiaux_textuels_visu_Feuil1.pdf",
+        "materiaux_textuels_visu_Feuil1.png"
+      ],
+      "warnings": [],
+      "status": "ok"
+    }
+  ]
+}

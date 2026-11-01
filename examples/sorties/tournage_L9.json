@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "tournage_L9.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 9,
+      "factors": [
+        {
+          "name": "Vc m/min",
+          "levels": [
+            120,
+            180,
+            240
+          ]
+        },
+        {
+          "name": "f mm/tr",
+          "levels": [
+            0.1,
+            0.2,
+            0.3
+          ]
+        },
+        {
+          "name": "ap mm",
+          "levels": [
+            0.5,
+            1,
+            1.5
+          ]
+        },
+        {
+          "name": "Lubrification",
+          "levels": [
+            "sec",
+            "émulsion",
+            "huile"
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "Vc m/min",
+          "ap mm"
+        ],
+        "y": [
+          "f mm/tr",
+          "Lubrification"
+        ]
+      },
+      "grid": {
+        "width": 9,
+        "height": 9,
+        "cells": 81
+      },
+      "occupied_cells": 9,
+      "empty_cells": 72,
+      "fill_rate": 0.1111111111111111,
+      "collisions": [],
+      "image_engine": "matplotlib",
+      "files": [
+        "tournage_L9_visu.xlsx",
+        "tournage_L9_visu_Feuil1.pdf",
+        "tournage_L9_visu_Feuil1.png"
+      ],
+      "warnings": [],
+      "status": "ok"
+    }
+  ]
+}

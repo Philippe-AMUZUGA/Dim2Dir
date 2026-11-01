@@ -1,0 +1,8 @@
+[run]
+source = dim2dir
+
+[report]
+show_missing = True
+fail_under = 85
+exclude_lines =
+    pragma: no cover

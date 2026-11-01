@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "plan_avec_collisions.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 6,
+      "factors": [
+        {
+          "name": "Vc m/min",
+          "levels": [
+            120,
+            180,
+            240
+          ]
+        },
+        {
+          "name": "f mm/tr",
+          "levels": [
+            0.1,
+            0.2,
+            0.3
+          ]
+        },
+        {
+          "name": "Lubrification",
+          "levels": [
+            "sec",
+            "huile",
+            "émulsion"
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "Vc m/min",
+          "Lubrification"
+        ],
+        "y": [
+          "f mm/tr"
+        ]
+      },
+      "grid": {
+        "width": 9,
+        "height": 3,
+        "cells": 27
+      },
+      "occupied_cells": 5,
+      "empty_cells": 22,
+      "fill_rate": 0.18518518518518517,
+      "collisions": [
+        {
+          "row": 2,
+          "column": 0,
+          "runs": [
+            "E1",
+            "E2"
+          ]
+        }
+      ],
+      "image_engine": "matplotlib",
+      "files": [
+        "plan_avec_collisions_visu.xlsx",
+        "plan_avec_collisions_visu_Feuil1.pdf",
+        "plan_avec_collisions_visu_Feuil1.png"
+      ],
+      "warnings": [
+        "Facteur 'Vc m/min' : 1 cellule(s) vide(s), niveau d'indice 0."
+      ],
+      "status": "ok"
+    }
+  ]
+}

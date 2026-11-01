@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "plan_trop_grand.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 4,
+      "factors": [
+        {
+          "name": "Facteur 1",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 2",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 3",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 4",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 5",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 6",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 7",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 8",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "name": "Facteur 9",
+          "levels": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "Facteur 1",
+          "Facteur 3",
+          "Facteur 5",
+          "Facteur 7",
+          "Facteur 9"
+        ],
+        "y": [
+          "Facteur 2",
+          "Facteur 4",
+          "Facteur 6",
+          "Facteur 8"
+        ]
+      },
+      "grid": {
+        "width": 1024,
+        "height": 256,
+        "cells": 262144
+      },
+      "occupied_cells": 4,
+      "empty_cells": 262140,
+      "fill_rate": 1.52587890625e-05,
+      "collisions": [],
+      "image_engine": null,
+      "files": [
+        "plan_trop_grand_visu.xlsx"
+      ],
+      "warnings": [
+        "Visualisation non générée : trop de cellules dans la grille exacte. Grille exacte calculée = 1024 x 256 (262,144 cellules). Aucun niveau n'est fusionné dans ce script standalone.",
+        "262144 cellules, limite 90000 ; relever limits.max_cells / --max-cells."
+      ],
+      "status": "skipped"
+    }
+  ]
+}

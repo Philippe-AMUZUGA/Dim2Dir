@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "version": "2.1.0",
+  "input": "boulonnerie_L18.xlsx",
+  "coverage_note": "Couverture calculée sur les niveaux observés dans le tableau, sans jugement d'optimalité statistique.",
+  "sheets": [
+    {
+      "sheet": "Feuil1",
+      "runs": 18,
+      "factors": [
+        {
+          "name": "Classe qualité",
+          "levels": [
+            8.8,
+            10.9
+          ]
+        },
+        {
+          "name": "Couple N.m",
+          "levels": [
+            40,
+            60,
+            80
+          ]
+        },
+        {
+          "name": "Lubrifiant",
+          "levels": [
+            "sec",
+            "huile",
+            "MoS2"
+          ]
+        },
+        {
+          "name": "État de surface",
+          "levels": [
+            "brut",
+            "zingué",
+            "phosphaté"
+          ]
+        },
+        {
+          "name": "Filet mm",
+          "levels": [
+            16,
+            24,
+            32
+          ]
+        },
+        {
+          "name": "Précharge %",
+          "levels": [
+            50,
+            65,
+            80
+          ]
+        },
+        {
+          "name": "Fréquence Hz",
+          "levels": [
+            5,
+            10,
+            20
+          ]
+        },
+        {
+          "name": "R contrainte",
+          "levels": [
+            0.1,
+            0.3,
+            0.5
+          ]
+        }
+      ],
+      "assignment": {
+        "x": [
+          "Classe qualité",
+          "Lubrifiant",
+          "Filet mm",
+          "Fréquence Hz"
+        ],
+        "y": [
+          "Couple N.m",
+          "État de surface",
+          "Précharge %",
+          "R contrainte"
+        ]
+      },
+      "grid": {
+        "width": 54,
+        "height": 81,
+        "cells": 4374
+      },
+      "occupied_cells": 18,
+      "empty_cells": 4356,
+      "fill_rate": 0.00411522633744856,
+      "collisions": [],
+      "image_engine": "matplotlib",
+      "files": [
+        "boulonnerie_L18_visu.xlsx",
+        "boulonnerie_L18_visu_Feuil1.pdf",
+        "boulonnerie_L18_visu_Feuil1.png"
+      ],
+      "warnings": [],
+      "status": "ok"
+    }
+  ]
+}

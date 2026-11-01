@@ -1,0 +1,20 @@
+﻿\setcounter{chapCompteur}{5}
+\ChapNumber{}{\hspace*{0.8cm}\LARGE \textbf{Sources et tests}}{\hspace*{0.8cm}\small Une source, deux façons de l'utiliser}
+\section{Conclusion}
+
+\begin{frame}[t]{Ce qu'il faut retenir}{Pour les développeurs : structure, tests, licence}
+\vfill
+{\relscale{0.9}
+\begin{mybox3}[yellow!8!white][Framajaune][Framajaune]{\textbf{Points clés}}
+\begin{itemize}\itemsep5pt
+\item Source unique : \texttt{src/dim2dir/core.py}, commune au paquet et au fichier autonome.
+\item \texttt{tools/sync\_standalone.py} synchronise la copie autonome \texttt{Dim2Dir.py}.
+\item Tests : \texttt{pytest}, API, limites, exports et parité avec la version 1.
+\item Licence : GNU AGPLv3, avec possibilité d'utiliser une version ultérieure.
+\item Projet parent : \href{https://github.com/Philippe-AMUZUGA/plex2-doe-explorer}{dépôt PLEX2 DOE Explorer}~\cite{plex2}.
+\end{itemize}
+\end{mybox3}
+Modifier la source unique, synchroniser la copie, puis exécuter les tests.}
+\note{Le rendu par défaut reste protégé par les contrôles de parité. Tests : python -m pytest -q depuis la racine ; synchronisation : python tools/sync_standalone.py --check. Les tests Excel COM exigent Windows et Excel.}
+\vfill
+\end{frame}

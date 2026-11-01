@@ -1,0 +1,3 @@
+-r requirements.txt
+# Option Windows uniquement : Excel de bureau doit aussi être installé.
+pywin32>=306 ; sys_platform == "win32"

@@ -1,0 +1,88 @@
+\setcounter{chapCompteur}{1}
+\ChapNumber{\myChapNum}{\hspace*{0.8cm}\LARGE \textbf{Comprendre}}{\hspace*{0.8cm}\small Lire une grille}
+\section{Comprendre}
+
+\begin{frame}[t]{Un tableau conserve les quatre facteurs du tournage L9}
+\vfill
+{\relscale{0.9}
+Un facteur est un réglage, un niveau une valeur possible ; chaque ligne est un essai.
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Run & Vc m/min & f mm/tr & ap mm & Lubrification\\
+\midrule
+1 & 120 & 0,1 & 0,5 & sec\\
+2 & 120 & 0,2 & 1,0 & émulsion\\
+3 & 120 & 0,3 & 1,5 & huile\\
+\bottomrule
+\end{tabular}
+\end{center}
+\notelibre{Extrait : trois des neuf essais du L9 ; tableau complet dans \texttt{examples/tournage\_L9.xlsx}. Vc : vitesse de coupe ; f : avance par tour ; ap : profondeur de passe.}
+\messagecle[blue]{Le dessin doit conserver les quatre réglages de chaque essai.}}
+\note{Toute colonne autre que Run est un facteur ; Run est facultatif (sinon E1, E2...). Retirer les réponses mesurées. Un en-tête vide arrête la lecture. Les lignes vides sont ignorées. Deux axes ordinaires ne montrent pas les quatre réglages à la fois.}
+\vfill
+\end{frame}
+
+\begin{frame}[t]{Deux axes emboîtés conservent tous les facteurs}
+\vfill
+{\relscale{0.9}
+Par défaut, x reçoit les facteurs impairs et y les facteurs pairs, après exclusion de \texttt{Run}. Le premier facteur de chaque axe varie le plus vite.
+\begin{center}
+\begin{tikzpicture}[schema]
+\node[entree,text width=2.2cm] (x1) {x : Vc\\120, 180, 240};
+\node[entree,text width=3.4cm,right=1cm of x1] (x2) {ap : 0,5 puis 1 puis 1,5\\Chaque bloc répète les Vc};
+\draw[flux] (x1) -- (x2);
+\node[entree,text width=2.2cm,below=0.5cm of x1] (y1) {y : f\\0,1 puis 0,2 puis 0,3};
+\node[entree,text width=3.4cm,right=1cm of y1] (y2) {Lubrification : sec,\\émulsion, huile\\Chaque bloc répète les f};
+\draw[flux] (y1) -- (y2);
+\end{tikzpicture}
+\end{center}
+\begin{mybox3}[blue!5!white][Framableu][Framableu]{\textbf{Définition : un axe emboîté}}
+Lire une position revient à retrouver un niveau dans chaque bloc. Ici, chaque direction contient $3\times3=9$ positions.
+\end{mybox3}}
+\vfill
+\end{frame}
+
+\begin{frame}[t]{Dim2Dir visualise les plans de PLEX2 ou un fichier autonome}
+\vfill
+{\relscale{0.9}
+PLEX2 DOE Explorer produit les plans Excel~\cite{plex2}. Dim2Dir lit un tableau existant et ajoute sa représentation. On peut aussi partir de son propre classeur.
+\begin{center}
+\begin{tikzpicture}[schema]
+\node[entree,text width=2.8cm] (p) {PLEX2 DOE Explorer\\Produit les plans};
+\node[entree,text width=2cm,right=0.6cm of p] (e) {Tableau Excel\\\texttt{.xlsx}};
+\node[sortie,text width=2.7cm,right=0.6cm of e] (d) {Dim2Dir\\Visualise les essais};
+\draw[flux] (p) -- (e);
+\draw[flux] (e) -- (d);
+\node[note,text width=3.2cm,below=0.6cm of e] (a) {Classeur préparé séparément};
+\draw[flux] (a) -- (e);
+\end{tikzpicture}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[schema]
+\node[entree,text width=1.6cm] (a) {1. Lire\\Le tableau};
+\node[entree,text width=1.6cm,right=0.35cm of a] (b) {2. Axes\\Les niveaux};
+\node[entree,text width=1.6cm,right=0.35cm of b] (c) {3. Projeter\\Les positions};
+\node[entree,text width=1.6cm,right=0.35cm of c] (d) {4. Colorer\\L'ordre};
+\node[sortie,text width=1.8cm,right=0.35cm of d] (e) {5. Écrire\\Et exporter};
+\draw[flux] (a) -- (b); \draw[flux] (b) -- (c);
+\draw[flux] (c) -- (d); \draw[flux] (d) -- (e);
+\end{tikzpicture}
+\end{center}
+\notelibre{Le fichier source reste intact. openpyxl lit et écrit le classeur~\cite{openpyxl}. La chaîne de traitement calcule les niveaux et les positions, puis les couleurs et les exports.}}
+\vfill
+\end{frame}
+
+\begin{frame}[t]{Ce qu'il faut retenir}{Comprendre}
+\vfill
+{\relscale{0.9}
+\begin{mybox3}[yellow!8!white][Framajaune][Framajaune]{\textbf{Points clés}}
+\begin{itemize}\itemsep5pt
+\item Une ligne est un essai, une colonne un facteur.
+\item Les niveaux s'emboîtent : le premier facteur de l'axe varie le plus vite.
+\item Couverture : part des cases occupées (L9 : 9 sur 81, soit 11,1\,\%).
+\item La couverture porte sur les niveaux observés dans le tableau ; elle ne mesure ni l'optimalité ni la qualité statistique du plan.
+\end{itemize}
+\end{mybox3}}
+\vfill
+\end{frame}

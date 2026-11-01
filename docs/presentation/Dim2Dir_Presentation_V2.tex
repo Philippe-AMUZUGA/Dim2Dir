@@ -1,0 +1,27 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+\input{_CONFIG_Beamer}
+\input{tikz_styles}
+% Coupures des URL : après un séparateur, pas au milieu d'un mot.
+\def\UrlBreaks{\do\.\do\/\do\?\do\#}
+\def\UrlBigBreaks{\do\:\do\-}
+% La page de transition de la conclusion (compteur 5) affiche « Conclusion » à la place du numéro de partie.
+\renewcommand{\motchapitre}{\ifnum\value{chapCompteur}>4 Conclusion\else Partie~\fi}
+\definecolor{dimBase}{HTML}{335C81}
+% Code neutre sur la comparaison : les teintes appartiennent aux figures.
+\lstdefinestyle{dimCode}{style=py_style1,keywordstyle=\bfseries,
+  stringstyle=\color{black},commentstyle=\itshape\color{black!65}}
+
+\begin{document}
+\input{_Page_Title}
+\input{_Sommaire}
+\input{Partie_01}
+\input{Partie_02}
+\input{Partie_03}
+\input{Partie_04}
+\input{Partie_OUTRO}
+\input{_Page_End}
+
+% Unique tableau blanc, après la garde finale.
+\begin{frame}[plain]
+\end{frame}
+\end{document}
