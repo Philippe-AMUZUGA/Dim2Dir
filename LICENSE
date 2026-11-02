@@ -1,24 +1,4 @@
-Dim2Dir
-Copyright (C) 2025-2026 Philippe AMUZUGA
-
-Ce programme est un logiciel libre : vous pouvez le redistribuer et/ou le
-modifier selon les termes de la GNU Affero General Public License telle que
-publiée par la Free Software Foundation, soit la version 3 de la licence, soit
-(à votre choix) toute version ultérieure.
-
-Ce programme est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE
-GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou
-d'ADÉQUATION À UN BUT PARTICULIER. Consultez la GNU Affero General Public
-License pour plus de détails.
-
-Vous devriez avoir reçu une copie de la GNU Affero General Public License avec
-ce programme. Si ce n'est pas le cas, consultez <https://www.gnu.org/licenses/>.
-
-Le texte officiel de la licence (en anglais) suit.
-
-------------------------------------------------------------------------------
-
-                    GNU AFFERO GENERAL PUBLIC LICENSE
+GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>

@@ -5,3 +5,4 @@ recursive-include examples *.py *.md *.xlsx
 recursive-include tools *.py
 recursive-include src/dim2dir *.py py.typed
 global-exclude __pycache__ *.py[cod]
+include NOTICE

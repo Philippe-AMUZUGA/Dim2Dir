@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "Philippe AMUZUGA"}]
 license = "AGPL-3.0-or-later"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 keywords = ["plan d'expériences", "design of experiments", "visualization", "excel", "pandas", "matplotlib"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
